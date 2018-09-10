@@ -1,0 +1,54 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+############################################################
+# 默认的JSON方式编码与解码
+############################################################
+
+# 测试使用JSON方式的接口
+POST http://127.0.0.1:8005/hello-word/create
+Content-Type: application/json
+Accept: application/json
+
+{"name":"tianjiaguo4444","tian":"guoguo"}
+
+###
+
+############################################################
+# 默认的PB方式的接口
+############################################################
+
+# 测试使用JSON->JSON格式发送数据
+POST http://127.0.0.1:8005/hello-word/user
+Content-Type: application/json
+Accept: application/json
+
+{"username":"t1","password":"p2"}
+
+###
+
+# 测试使用JSON->PB格式发送数据
+POST http://127.0.0.1:8005/hello-word/user
+Content-Type: application/json
+Accept: application/x-protobuf
+
+{"username":"t1","password":"p2"}
+
+###
+
+############################################################
+# 混合测试
+############################################################
+
+# 测试原生PB、JSON格式请求数据
+GET http://127.0.0.1:8006/hello-word/select
+Content-Type: application/json
+Accept: application/json
+
+###
+
+
