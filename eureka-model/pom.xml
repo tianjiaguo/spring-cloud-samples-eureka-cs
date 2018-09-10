@@ -106,6 +106,52 @@
                             </tasks>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>generate-sources-js</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <tasks>
+                                <echo>Delete folder : ${basedir}/src/main/gen_js_import</echo>
+                                <delete dir="${basedir}/src/main/gen_js_import" quiet="true"/>
+                                <echo>Create folder : ${basedir}/src/main/gen_js_import</echo>
+                                <mkdir dir="${basedir}/src/main/gen_js_import"/>
+                                <!-- Compile proto files in all locations -->
+                                <echo>Compiling **/*.proto files...</echo>
+                                <apply executable="${proto.path}">
+                                    <arg value="--proto_path=${idl.folder}"/>
+                                    <arg value="--js_out=import_style=guoguo_eureka_model,binary:${basedir}/src/main/gen_js_import"/>
+                                    <fileset dir="${idl.folder}" includes="**/*.proto"
+                                             excludes="google/protobuf/descriptor.proto"/>
+                                </apply>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-sources-js2</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <tasks>
+                                <echo>Delete folder : ${basedir}/src/main/gen_js_library</echo>
+                                <delete dir="${basedir}/src/main/gen_js_library" quiet="true"/>
+                                <echo>Create folder : ${basedir}/src/main/gen_js_library</echo>
+                                <mkdir dir="${basedir}/src/main/gen_js_library"/>
+                                <!-- Compile proto files in all locations -->
+                                <echo>Compiling **/*.proto files...</echo>
+                                <apply executable="${proto.path}">
+                                    <arg value="--proto_path=${idl.folder}"/>
+                                    <arg value="--js_out=library=guoguo_eureka_model,binary:${basedir}/src/main/gen_js_library"/>
+                                    <fileset dir="${idl.folder}" includes="**/*.proto"
+                                             excludes="google/protobuf/descriptor.proto"/>
+                                </apply>
+                            </tasks>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>

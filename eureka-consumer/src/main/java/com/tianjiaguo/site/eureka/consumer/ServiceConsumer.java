@@ -1,10 +1,11 @@
 package com.tianjiaguo.site.eureka.consumer;
 
+import com.tianjiaguo.site.eureka.converter.ProtobufJsonFormatHttpMessageConverter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
+import org.springframework.http.converter.AbstractHttpMessageConverter;
 
 /**
  * TODO:
@@ -15,13 +16,16 @@ import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
 @SpringBootApplication
 @EnableFeignClients
 public class ServiceConsumer {
+    //    @Bean
+//    ProtobufHttpMessageConverter protobufHttpMessageConverter() {
+//        return new ProtobufHttpMessageConverter();
+//    }
     @Bean
-    ProtobufHttpMessageConverter protobufHttpMessageConverter() {
-        return new ProtobufHttpMessageConverter();
+    AbstractHttpMessageConverter protobufHttpMessageConverter() {
+        return new ProtobufJsonFormatHttpMessageConverter();
     }
 
     public static void main(String[] args) {
         SpringApplication.run(ServiceConsumer.class, args);
     }
-
 }

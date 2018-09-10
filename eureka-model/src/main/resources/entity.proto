@@ -6,3 +6,8 @@ message User {
     required string username 		= 11;    //用户名
 	required string password 		= 12;    //密码
 }
+
+message Account {
+    required string username 		= 11;    //用户名
+	optional string password 		= 12;    //密码
+}
