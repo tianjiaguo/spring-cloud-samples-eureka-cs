@@ -1,0 +1,8 @@
+syntax = "proto2";
+option java_package = "com.tianjiaguo.site.eureka.model";
+option java_multiple_files = true;//指定生成多个类
+
+message User {
+    required string username 		= 11;    //用户名
+	required string password 		= 12;    //密码
+}
